@@ -3,7 +3,11 @@ source test/test-helper.sh
 describe "Tests for non-special filetypes"
 
 before() {
-    mkdir tmp && cd tmp
+    test -d tmp || {
+        mkdir tmp
+    }
+
+    cd tmp
     load_fixtures
 }
 

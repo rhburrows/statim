@@ -1,4 +1,4 @@
-project_dir=$(dirname $0)
+project_dir=$(pwd)
 test_dir="$project_dir/test"
 quicki_cmd="$project_dir/quicki.sh"
 

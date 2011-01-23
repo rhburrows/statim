@@ -5,8 +5,14 @@ test -d $dest_dir || {
     mkdir -p $dest_dir
 }
 
+# TODO: make this smarter
+markdown_cmd="markdown"
+
 process_file() {
     case "$1" in
+        *.md|*.markdown)
+            process_markdown "$1"
+            ;;
         *)
             process_static "$1"
             ;;
@@ -35,6 +41,17 @@ process_static() {
     }
 
     cp "$1" "$dest"
+}
+
+process_markdown() {
+    dest=$(echo "$1" | sed -e "s/^content/$dest_dir/" -e "s/markdown$/html/" -e "s/md$/html/")
+    dir=$(dirname $dest)
+
+    test -d "$dir" || {
+        mkdir "$dir"
+    }
+
+    markdown "$1" > "$dest"
 }
 
 process_dir content

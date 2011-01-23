@@ -1,5 +1,8 @@
 #!/bin/sh
 
+QUICKI_VERSION="0.0.1"
+export QUICKI_VERSION
+
 dest_dir=$1
 test -d $dest_dir || {
     mkdir -p $dest_dir

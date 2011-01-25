@@ -66,9 +66,7 @@ convert_links() {
     for convert_file in $convert_files
     do
         to_camel_case "$(basename $convert_file)"
-        echo "Link name $camel_cased" >> ../log.txt
         link="\\<a href=\\\"$(basename $convert_file)\\\"\\>$camel_cased\\<\\/a\\>"
-        echo "Link $link" >> ../log.txt
 
         for other_file in $convert_files
         do
@@ -77,7 +75,6 @@ convert_links() {
             }
 
             sed -e "s/$camel_cased/$link/g" "$other_file" > "$other_file.tmp"
-            echo "Sub for '$camel_cased' in '$other_file'"
             mv "$other_file.tmp" "$other_file"
         done
     done
